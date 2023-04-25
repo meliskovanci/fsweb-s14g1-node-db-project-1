@@ -8,20 +8,24 @@ exports.checkAccountPayload = (req, res, next) => {
   if(name === undefined || budget === undefined){
     res.status(400).json({message:"name and budget are required"})
     next();
-  }else if (name.trim().lentgh < 3 || name.trim().lentgh > 100){
-    res.status(400).json({message:"name of account must be between 3 and 100"})
-    next();
+  }else{
+    req.body.name = req.body.name.trim();
+    if(req.body.name.length<3 || req.body.name.length>100){
+      res.status(400).json({message:"name of account must be between 3 and 100"})
+    
   } else if(typeof budget !=="number" ){
     res.status(400).json({message:"budget of account must be a number"})
-    next();
+    
   } else if( budget < 0 || budget > 1000000){
     res.status(400).json({message:"budget of account is too large or too small"})
-    next();
+    
   } else{
     req.body.name = name.trim();
     next()
   }
 }
+}
+
 
 exports.checkAccountNameUnique = async (req, res, next) => {
   try {
