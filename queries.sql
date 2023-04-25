@@ -4,10 +4,10 @@
    SELECT * FROM Customers WHERE PostalCode = 1010;
 
 -- id'si 11 olan tedarikçinin telefon numarasını bulun
-SELECT Phone FROM Suppliers WHERE SupplierID = 11;
+  SELECT Phone FROM Suppliers WHERE SupplierID = 11;
 
 -- Verilen ilk 10 siparişi, sipariş tarihine göre azalan şekilde listeleyin
-SELECT * FROM Orders Order By orderdate desc limit 10;
+   SELECT * FROM Orders Order By orderdate desc limit 10;
 
 -- Londra, Madrid veya Brezilya'da yaşayan tüm müşterileri bulun
 SELECT * FROM Customers WHERE City='London' OR City='Madrid' OR Country='Brazil';
@@ -20,4 +20,8 @@ UPDATE Customers set PostalCode = '11122' WHERE ContactName = 'Bilbo Baggins';
 
 -- (Zorlayıcı Görev) Müşteriler tablosunda kaç farklı şehrin saklandığını keşfetmek için bir sorgu bulun. Tekrarlar çift sayılmamalıdır
 
+select distinct city from customers
+
 -- (Zorlayıcı Görev) 20 karakterden uzun adları olan tüm tedarikçileri bulun. Adın uzunluğunu almak için "length(SupplierName)" kullanabilirsiniz.
+
+SELECT *, length(SupplierName) FROM [Suppliers] where length(SupplierName) > 20
